@@ -10,6 +10,10 @@ class queue {
 			_value = value;
 			_next = nullptr;
 		}
+
+		~node() {
+		}
+
 		void setValue(T value) {
 			_value = value;
 		}
@@ -20,13 +24,10 @@ class queue {
 
 		node* getNext() {
 			return _next;
-		}
+		} 
 
 		void setNext(node* next) {
 			_next=next;
-		}
-
-		~node() {
 		}
 
 	};
@@ -41,19 +42,23 @@ private:
 			node = node->getNext();
 		return node;
 	}
+
 public:
 	queue() { 
 		_head = nullptr; 
 		_size = 0;
 	}
+
 	bool isEmpty() {
 		return (_size==0);
 	}
+
 	T front() {
 		if (isEmpty()) 
 			throw "queue is empty";
 		return _head->getValue();
 	}
+
 	T back() {
 		if (isEmpty()) 
 			throw "queue is empty"; 
