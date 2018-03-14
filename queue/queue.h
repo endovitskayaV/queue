@@ -1,15 +1,12 @@
 #pragma once
-//#include <iostream>
-
-//using namespace std;
-
 template <typename T>
 class queue {
 	class node {
+	private:
 		T _value;
 		node* _next;
 	public:
-		node (T value) {
+		node(T value) {
 			_value = value;
 			_next = nullptr;
 		}
@@ -38,11 +35,11 @@ private:
 	node* _head;
 	int _size;
 
-	node getBack() {
-		node* node = _head;
-		while ((*node).getNext() != nullptr)
-			node = (*node).getNext();
-		return *node;
+	node* getBackNode() {
+		node *node = _head;
+		while (node->getNext() != nullptr)
+			node = node->getNext();
+		return node;
 	}
 public:
 	queue() { 
@@ -50,13 +47,17 @@ public:
 		_size = 0;
 	}
 	bool isEmpty() {
-		return (_head==nullptr);
+		return (_size==0);
 	}
 	T front() {
+		if (isEmpty()) 
+			throw "queue is empty";
 		return _head->getValue();
 	}
 	T back() {
-		return getBack().getValue();
+		if (isEmpty()) 
+			throw "queue is empty"; 
+		 return getBackNode()->getValue();
 	}
 
 	int size() {
@@ -64,17 +65,19 @@ public:
 	}
 
 	T pop(){
-		node* node = _head;
-		_head = _head->getNext();
+		if (isEmpty()) throw "queue is empty";
+		else{
 		_size--;
-		//delete 
-		return (*node).getValue();
+		T value = _head->getValue();
+		_head = _head->getNext();
+		return value;
+		}
 	}
 
 	void push(T value) {
 		node *newNode=new node(value);
 		if (_head == nullptr) _head = newNode;
-		else getBack().setNext(newNode);
+		else getBackNode()->setNext(newNode);
 		_size++;
 	}
 };
