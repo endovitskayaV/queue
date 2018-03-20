@@ -5,7 +5,6 @@
 #include "queue.h"
 #include <iostream>
 #include <string>
-
 using namespace std;
 int main()
 {
@@ -39,6 +38,9 @@ int main()
 	queueInt.push(3);
 	queueInt.push(17);
 	queueInt.push(88);
+	for (int a : queueInt) {
+		cout << a << endl;
+	}
 	int intFirst=queueInt.pop();
 	int s = queueInt.size();
 	b = queueInt.isEmpty();
@@ -63,7 +65,7 @@ int main()
 	b = queueD.isEmpty();
 
 	try {
-		int intBack = queueD.pop();
+		double intBack = queueD.pop();
 	}
 	catch (const char* msg) {
 		cout << msg << endl;
@@ -80,8 +82,7 @@ int main()
 	double backD = queueD.back();
 	firstD = queueD.front();
 	firstD = queueD.pop();
-
-
+	
 	cin.ignore();
     return 0;
 }
